@@ -12,6 +12,12 @@ FISRT COMPONENT
 
 TS
 
+  constructor(
+    private staffPersnalInfoService: StaffPersnalInfoService,
+    private router: Router,
+    private route: ActivatedRoute) { }
+
+
 onViewData(element: any) {
   this.router.navigate(['../view-staff', element.empNo],
   { relativeTo: this.route });
