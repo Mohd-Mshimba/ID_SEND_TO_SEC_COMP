@@ -1,0 +1,40 @@
+FISRT COMPONENT 
+
+<ng-container matColumnDef="action">
+  <th mat-header-cell *matHeaderCellDef> ACTION </th>
+  <td mat-cell *matCellDef="let element">
+    <a title="View Data" (click)="onViewData(element)">
+      <i class="fa fa-eye" aria-hidden="true"></i>
+    </a>
+  </td>
+</ng-container>
+
+
+TS
+
+onViewData(element: any) {
+  this.router.navigate(['../view-staff', element.empNo],
+  { relativeTo: this.route });
+}
+
+
+APP-ROUTING
+
+{
+  path: 'view-staff/:empNo',
+  component: ViewStaffComponent,
+}
+
+
+
+SECOND COMPONENTS
+
+ngOnInit(): void {
+  this.activatedRoute.params.subscribe((data: any) => {
+    this.empNo = data.empNo;
+  })
+  this.staffPersnalInfoService.get(this.empNo).subscribe(data => {
+    this.userDetails = data;
+    this.datas = data.empNo;
+  });
+}
